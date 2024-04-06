@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    .bg-blue {
+        background-color: rgb(162 211 225) !important;
+    }
+    .bg-liblue {
+        background-color: #dbecf3 !important
+    }
+    .px-6 {
+        padding-right: 10rem !important;
+        padding-left: 10rem !important;
+    }
+    .text-left {
+        text-align: left !important;
+    }
+    .mt-5 {
+        margin-top: 2rem !important;
+    }
+</style>
+<body class="vh-100 vw-100">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">가입 성공!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                UMC챌린저 가입을 축하합니다!!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-blue d-flex justify-content-center vh-100 vw-100">
+    <div class="card m-5 d-flex rounded-4" style="width: 40rem;">
+        <div class="card-body bg-liblue rounded-4 p-5 pt-4 d-flex flex-column align-items-center">
+            <div class="pt-2 h3 pb-3 border-bottom card-title fw-bold border-white px-6">회원가입</div>
+            <div class="mt-5 mb-0 text-left w-75">이름</div>
+            <div class="w-75">
+                <input id="n" class="bg-liblue border border-white w-100" type="text"/>
+            </div>
+            <div id="name" class="mb-0 text-left w-75"></div>
+
+            <div class="mt-5 mb-0 text-left w-75">이메일</div>
+            <div class="w-75">
+                <input id="e" class="bg-liblue border border-white w-100" type="email"/>
+            </div>
+            <div id="email" class="mb-0 text-left w-75"></div>
+
+            <div class="mt-5 mb-0 text-left w-75">나이</div>
+            <div class="w-75">
+                <input id="a" class="bg-liblue border border-white w-100" type="text"/>
+            </div>
+            <div id="age" class="mb-0 text-left w-75"></div>
+
+            <div class="mt-5 mb-0 text-left w-75">비밀번호</div>
+            <div class="w-75">
+                <input id="p" class="bg-liblue border border-white w-100" type="password"/>
+            </div>
+            <div id="password" class="mb-0 text-left w-75"></div>
+
+            <div class="mt-5 mb-0 text-left w-75">비밀번호 확인</div>
+            <div class="w-75">
+                <input id="c" class="bg-liblue border border-white w-100" type="password"/>
+            </div>
+            <div id="confirm" class="mb-0 text-left w-75"></div>
+            <button id="btn" type="button" class="btn btn-secondary px-5 mt-5">
+                가입하기
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    document.getElementById('btn').addEventListener('click', function() {
+        var nameValue = document.getElementById('n').value;
+        var emailValue = document.getElementById('e').value;
+        var ageValue = document.getElementById('a').value;
+        var pwValue = document.getElementById('p').value;
+        var cValue = document.getElementById('c').value;
+
+        var a, b, c, d, e;
+
+        // 이름
+        if(nameValue === ''){
+            document.getElementById('name').innerText = '필수 입력 항목입니다.';
+            document.getElementById('name').style.color = 'red';
+        } else {
+            document.getElementById('name').innerText = '멋진 이름이네요!';
+            document.getElementById('name').style.color = 'green';
+            a = true;
+        }
+        // email
+        if (emailValue === '') {
+            document.getElementById('email').innerText = '올바른 이메일 형식이 아닙니다.'
+            document.getElementById('email').style.color = 'red';
+        } else if ( !emailValue.includes('@')){
+            document.getElementById('email').innerText = '올바른 이메일 형식이 아닙니다.'
+            document.getElementById('email').style.color = 'red';
+        } else {
+            document.getElementById('email').innerText = '올바른 이메일 형식입니다!'
+            document.getElementById('email').style.color = 'green';
+            b = true;
+        }
+
+        //age
+        if (ageValue === '') {
+            document.getElementById('age').innerText = '나이를 입력해주세요.';
+            document.getElementById('age').style.color = 'red';
+        } else {
+            ageValue = parseInt(ageValue);
+            if (!Number.isInteger(ageValue)){
+                document.getElementById('age').innerText = '나이는 숫자 형식이여야 합니다.';
+                document.getElementById('age').style.color = 'red';
+            } else if (isNaN(ageValue)) {
+                document.getElementById('age').innerText = '나이는 정수 형식이여야 합니다.';
+                document.getElementById('age').style.color = 'red';
+            } else if (ageValue < 0) {
+                document.getElementById('age').innerText = '나이는 음수가 될 수 없습니다!';
+                document.getElementById('age').style.color = 'red';
+            } else if (ageValue < 19) {
+                document.getElementById('age').innerText = '미성년자는 가입할 수 없습니다.';
+                document.getElementById('age').style.color = 'red';
+            } else {
+                document.getElementById('age').innerText = '올바른 나이 형식입니다!';
+                document.getElementById('age').style.color = 'green';
+                c = true;
+            }
+        }
+
+        //password
+        if (pwValue === '') {
+            document.getElementById('password').innerText = '비밀번호는 필수 입력 항목입니다.';
+            document.getElementById('password').style.color = 'red';
+        } else if (pwValue.length < 4) {
+            document.getElementById('password').innerText = '비밀번호는 최소 4자리 이상이어야 합니다.';
+            document.getElementById('password').style.color = 'red';
+        } else if (pwValue.length > 12) {
+            document.getElementById('password').innerText = '비밀번호는 최대 12자리까지 가능합니다.';
+            document.getElementById('password').style.color = 'red';
+        } else if (!/[a-zA-Z]/.test(pwValue) || !/\d/.test(pwValue) || !/[!@#$%^&*(),.?":{}|<>]/.test(pwValue)) {
+            document.getElementById('password').innerText = '영어, 숫자, 특수문자를 모두 조합해서 비밀번호를 작성해야 합니다.';
+            document.getElementById('password').style.color = 'red';
+        } else {
+            document.getElementById('password').innerText = '올바른 비밀번호입니다!';
+            document.getElementById('password').style.color = 'green';
+            d = true;
+        }
+
+        //confirm
+        if (cValue === '') {
+            document.getElementById('confirm').innerText = '비밀번호가 일치하지 않습니다.';
+            document.getElementById('confirm').style.color = 'red';
+        } else if ( pwValue !== cValue) {
+            document.getElementById('confirm').innerText = '비밀번호가 일치하지 않습니다.';
+            document.getElementById('confirm').style.color = 'red';
+        } else {
+            document.getElementById('confirm').innerText = '비밀번호가 일치합니다!';
+            document.getElementById('confirm').style.color = 'green';
+            e = true;
+        }
+
+        if (a && b && c && d && e) {
+            var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            myModal.show();
+        }
+    }); 
+</script>
+</html>
