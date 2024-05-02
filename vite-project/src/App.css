@@ -1,42 +1,47 @@
+body{
+  margin: 0;
+}
 #root {
-  max-width: 1280px;
+  background-color: #22264c;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  color: white;
+}
+.card{
+  position: relative;
+  width: 200px;
+  height: 400px;
+  margin: 10px;
+  text-align: center;
+  background-color: #373b6a;
+}
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.zero{
+  margin-top: 10px;
+}
+.hover-info {
+  position: absolute; /* 상대적으로 배치하기 위해 절대 위치를 사용합니다. */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 검은색의 반투명 배경 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* 초기에는 보이지 않도록 설정합니다. */
+  transition: opacity 0.3s ease; /* 부드러운 페이드 인/아웃 효과를 적용합니다. */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.card:hover .hover-info {
+  opacity: 1; /* 마우스 호버 시에만 투명도를 1로 변경하여 나타나게 합니다. */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.hover-info h5, .hover-info p {
+  color: white;
 }
