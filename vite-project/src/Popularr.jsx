@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import { useNavigate } from 'react-router-dom';
 
 function Popularr(){
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 영화 정보 가져오기
@@ -22,19 +24,32 @@ function Popularr(){
       })
       .catch(err => console.error(err));
   }, []); 
-    return (
-      <div className="movie-container">
-        {movies.map((movie) => ( 
-          <div key={movie.id} className='card' >
-            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
-            <div className='cardBottom'>
-              <h5 className='zero'>{movie.original_title}</h5>
-              <p>{movie.vote_average}</p>
-            </div>
+
+  const onClickMovie = (movie) => {
+    navigate(`/Popularr/${movie.id}`, {
+      state: { 
+        title: movie.title,
+        posterPath: movie.poster_path,  
+        vote: movie.vote_average,
+        date: movie.release_date,
+        overview: movie.overview
+      }
+    });
+  };
+  
+  return (
+    <div className="movie-container">
+      {movies.map((movie) => ( 
+        <div key={movie.id} className='card' onClick={() => onClickMovie(movie)}>
+          <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
+          <div className='cardBottom'>
+            <h5 className='zero'>{movie.original_title}</h5>
+            <p>{movie.vote_average}</p>
           </div>
-        ))}
-      </div>
-    );
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Popularr;
