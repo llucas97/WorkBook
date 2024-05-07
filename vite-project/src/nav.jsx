@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function Navbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const handleLoginLogout = () => {
-        setIsLoggedIn(prevState => !prevState);
-    };
+    
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary w-100">
@@ -18,9 +14,7 @@ function Navbar() {
                 </button>
                 <div className="collapse justify-content-end navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <button className="nav-link btn btn-link" onClick={handleLoginLogout}>
-                            {isLoggedIn ? '로그아웃' : '로그인'}
-                        </button>
+                        <Link className="nav-link fw-bold" to={'/'}>회원가입</Link>
                         <Link className="nav-link" to={'/Popularr'}>Popular</Link>
                         <Link className="nav-link" to={'/Now_playing'}>Now Playing</Link>
                         <Link className="nav-link" to={'/Top_Rated'}>Top Rated</Link>
