@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Form, Row, Col } from 'react-bootstrap';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -15,8 +16,10 @@ function SignUp() {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
-    // Check if all input fields are filled
     if (name && email && age && password && confirmPassword && !nameError && !emailError && !ageError && !passwordError && !confirmPasswordError) {
       setSubmitButtonDisabled(false);
     } else {
@@ -159,7 +162,13 @@ function SignUp() {
       </Row>
       <Row className='w-100 justify-content-center pt-5'>
         <Col md={{ span: 3 }} className='justify-content-center w-50'>
-          <button className={`btn btn-outline-warning w-100 rounded-5 py-3 ${submitButtonDisabled ? 'disabled' : ''}`} disabled={submitButtonDisabled}>제출하기</button>
+          <button 
+            className={`btn btn-outline-warning w-100 rounded-5 py-3 ${submitButtonDisabled ? 'disabled' : ''}`} 
+            disabled={submitButtonDisabled} 
+            onClick={() => navigate("/Login", { state: { name, email, age, password, confirmPassword } })}
+          >
+            제출하기
+          </button>
           <div className='d-flex justify-content-around pt-5'>
             <button className='btn text-white'>이미 아이디가 있으신가요?</button>
             <button className='fw-bold btn text-white'>로그인 페이지로 이동하기</button>

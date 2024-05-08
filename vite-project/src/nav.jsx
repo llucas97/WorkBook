@@ -14,7 +14,7 @@ function Navbar() {
                 </button>
                 <div className="collapse justify-content-end navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <Link className="nav-link fw-bold" to={'/'}>회원가입</Link>
+                        <Link className="nav-link fw-bold" to={'/Sign_Up'}>회원가입</Link>
                         <Link className="nav-link" to={'/Popularr'}>Popular</Link>
                         <Link className="nav-link" to={'/Now_playing'}>Now Playing</Link>
                         <Link className="nav-link" to={'/Top_Rated'}>Top Rated</Link>
